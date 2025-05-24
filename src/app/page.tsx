@@ -92,30 +92,7 @@ const sampleBooks = [
     reviewCount: 180,
     price: 28
   },
-  {
-    title: "Tort Principles",
-    author: "Academic Scholar",
-    description: "Understanding tort law through practical examples and detailed explanations of key concepts and precedents.",
-    rating: 4.4,
-    reviewCount: 120,
-    price: 22
-  },
-  {
-    title: "Property Guide",
-    author: "Real Estate Expert",
-    description: "Comprehensive coverage of property law fundamentals, from ownership rights to real estate transactions.",
-    rating: 4.8,
-    reviewCount: 220,
-    price: 35
-  },
-  {
-    title: "Evidence Handbook",
-    author: "Trial Attorney",
-    description: "Master the rules of evidence with this practical handbook designed for courtroom success.",
-    rating: 4.3,
-    reviewCount: 95,
-    price: 27
-  }
+ 
 ]
 
 export default function Home() {

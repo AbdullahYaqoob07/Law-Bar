@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import Image from 'next/image'
+import { ArrowRight } from "lucide-react"
 
 export default function Header() {
   return (
@@ -24,11 +25,16 @@ export default function Header() {
         </div>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8 font-poppins font-medium">
+        <nav className="hidden md:flex items-center gap-6 font-poppins font-medium">
           <NavItem href="/lawcourses" label="Law Courses" />
           <NavItem href="/mock-tests" label="SQE" />
           <NavItem href="/lawbooks" label="Law Books" />
           <NavItem href="/blog" label="Blog" />
+          <Link href="/Login">
+            <button className="bg-[#0f3d3e] mr-8 ml-50 text-white py-2 px-4 rounded-lg hover:bg-[#0f3d3e] transition-colors flex items-center gap-2">
+              Login <ArrowRight />
+            </button>
+          </Link>
         </nav>
       </div>
     </header>
