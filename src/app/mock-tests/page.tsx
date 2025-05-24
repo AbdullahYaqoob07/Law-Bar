@@ -1,5 +1,5 @@
 "use client"
-import router from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
@@ -100,6 +100,7 @@ const mockTests = [
 ]
 
 export default function MockTestPage() {
+  const router = useRouter();
   const handleStartTest = (testId: string) => {
     router.push(`/mock-tests/${testId}`)
   }
