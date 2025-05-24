@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type CourseCardProps = {
-  id: number
+  id: number | string
   title: string
   description: string
-  lawtype1: string
-  lawtype2: string
+  lawtype1: string | number
+  lawtype2: string | number
   price: number
   viewUrl?:string
 }
