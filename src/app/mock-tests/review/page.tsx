@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import type { Test, UserAnswer } from "@/lib/types"
 import { getTestById } from "@/lib/test-data"
 
-export default function ReviewPage() {
+function ReviewContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [test, setTest] = useState<Test | null>(null)
@@ -190,12 +190,31 @@ export default function ReviewPage() {
         <div className="flex justify-center">
           <Link
             href="/mock-tests"
-            className="px-6 py-3 bg-teal-900 text-white rounded-lg font-medium hover:bg-teal-800 transition-colors"
+            className="px-6 py-3 bg-[#0f3d3e] text-white rounded-lg font-medium hover:bg-[#0f3d3e]/90 transition-colors"
           >
             Back to Tests
           </Link>
         </div>
       </div>
     </div>
+  )
+}
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0f3d3e] mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading review...</p>
+      </div>
+    </div>
+  )
+}
+
+export default function ReviewPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ReviewContent />
+    </Suspense>
   )
 }
