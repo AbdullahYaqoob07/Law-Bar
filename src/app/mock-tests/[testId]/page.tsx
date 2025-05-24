@@ -30,7 +30,7 @@ const mockQuestions: Question[] = [
   // Add more questions as needed
 ]
 
-export default function TestPage({ params }: { params: { testId: string } }) {
+export default function TestPage() {
   const router = useRouter()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(0)
