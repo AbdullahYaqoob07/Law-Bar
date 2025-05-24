@@ -120,7 +120,7 @@ const sampleBooks = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#E6eeec]">
+    <main className="min-h-screen bg-[#E6eeec] flex flex-col">
       <Header />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

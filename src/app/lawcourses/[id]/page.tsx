@@ -1,8 +1,9 @@
-import { ArrowLeft, ChevronDown, Twitter, Linkedin, Facebook } from 'lucide-react'
+import { ArrowLeft,ArrowRight, ChevronDown, Twitter, Linkedin, Facebook } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ProfileCard from '@/components/ProfileCard'
 
 export default function CourseDetails() {
   return (
@@ -127,44 +128,85 @@ export default function CourseDetails() {
             </div>
 
             {/* Instructor */}
-            <div className="mt-6 bg-[#0f3d3e] rounded-md p-6 text-white">
-      <div className="flex items-start gap-4">
-        <Image
-          src="/man.png"
-          alt="Instructor"
-          width={64}
-          height={64}
-          className="rounded-md"
-        />
-        <Linkedin height={25} width={50} className="bg-blue-500 text-white mt-10 gap-2" />
-        <div>
-          <div></div>
-            <h3 className="font-medium">Tamás Hám-Szabó</h3>
-           
-          
-          <p className="text-xs text-gray-300 mt-1">
-            Founder of SAAS First - the Best AI and Data-Driven Customer Engagement Tool
-          </p>
-        </div>
+          <div className='mt-6 w-[120%]'>
+      <ProfileCard />
       </div>
-      <p className="text-sm mt-4">
-        With 11 years in SaaS, I&apos;ve built MillionVerifier and SAAS First. Passionate about SaaS, data, and AI.
-        Let&apos;s connect if you share the same drive for success!
-      </p>
-    </div>
 
           </div>
         </div>
 
         {/* Share banner: moved outside columns but inside main */}
-        <div className="w-full bg-[#0f3d3e] text-white  py-6 flex items-center justify-between rounded-md mt-6 px-6">
-          <p className="text-sm font-semibold mt-1 font-poppins sm:text-base">Like what you see? Share with a friend.</p>
-          <div className="flex gap-4">
-            <Facebook size={20} />
-            <Twitter size={20} />
-            <Linkedin size={20} />
+        <div className="bg-teal-900 rounded-xl p-6 text-white mt-12 flex justify-between items-center">
+            <p className="text-xl font-medium">Like what you see? Share with a friend.</p>
+            <div className="flex gap-4">
+              {/* Facebook */}
+              <a href="#" className="text-white hover:text-gray-200" aria-label="Share on Facebook">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" />
+                </svg>
+              </a>
+
+              {/* Twitter/X */}
+              <a href="#" className="text-white hover:text-gray-200" aria-label="Share on Twitter">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+
+              {/* LinkedIn */}
+              <a href="#" className="text-white hover:text-gray-200" aria-label="Share on LinkedIn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <div className="uppercase text-xs font-medium text-gray-700 mb-2">OUR BLOG</div>
+            <h2 className="text-3xl font-bold text-[#0f3d3e]">Trending Blogs & Articles</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              { day: 21, month: "Jul", year: 2023, image: "/blog-img1.png" },
+              { day: 25, month: "Aug", year: 2023, image: "/blog-img2.png" },
+              { day: 29, month: "Sep", year: 2023, image: "/blog-img3.png" },
+            ].map((post, index) => (
+              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm">
+                <div className="relative h-48">
+                  <Image
+                    src={post.image || "/placeholder.svg"}
+                    alt="Blog thumbnail"
+                    width={400}
+                    height={300}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-start gap-4 mb-2">
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-[#0f3d3e]">{post.day}</div>
+                      <div className="text-xs text-gray-500">
+                        {post.month} {post.year}
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-gray-800">How this student became a lawyer?</h3>
+                  </div>
+                  <div className="flex justify-end">
+                    <Link href="#" className="text-[#0f3d3e] text-sm flex items-center gap-1 font-medium">
+                      READ MORE <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
       </main>
       <Footer />
     </div>

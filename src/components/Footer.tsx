@@ -1,35 +1,35 @@
 import Image from "next/image"
 import { Facebook, Twitter, Linkedin, MapPin, Mail, Phone, ArrowRight } from "lucide-react"
-
+import Link from "next/link"
+import React from "react"
 
 export default function Footer() {
 
     return (
-        <footer className="bg-[#0e1317] text-white w-screen relative left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] pb-0">
+        <footer className="bg-[#0e1317] text-white w-screen  relative left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] pb-0">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-12">
             {/* Left Column - Logo and Description */}
             <div className="md:col-span-4">
               <div className="flex items-center gap-2 mb-4">
                 <div className="text-2xl font-medium flex items-center gap-2">
-                  <span className="text-[#93CBAF]">B</span>
+                  <Image src="/logof.png" alt="Logo" width={30} height={30} />
                   Law & Bar Academy
                 </div>
               </div>
               <p className="text-gray-400 mb-6">Phasellus nisi sapien, rutum placerat sapien eu, rhoncus tempus</p>
               <div className="flex gap-3">
-                <a href="#" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
-                  <Facebook size={16} />
-                </a>
-                <a href="#" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
-                  <Twitter size={14} />
-                </a>
-                <a href="#" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
-                  <span className="text-sm font-bold">Be</span>
-                </a>
-                <a href="#" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
-                  <Linkedin size={14} />
-                </a>
+                <div className="flex gap-3">
+                  <Link href="https://facebook.com" target="_blank" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
+                    <Facebook size={16} />
+                  </Link>
+                  <Link href="https://twitter.com" target="_blank" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
+                    <Twitter size={14} />
+                  </Link>
+                  <Link href="https://linkedin.com" target="_blank" className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#0f3d3e] transition-colors">
+                    <Linkedin size={14} />
+                  </Link>
+                </div>
               </div>
             </div>
   

@@ -26,19 +26,10 @@ export default function Header() {
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8 font-poppins font-medium">
           <NavItem href="/lawcourses" label="Law Courses" />
-          <NavItem href="#" label="SQE" />
-          <NavItem href="#" label="Law Books" />
-          <NavItem href="#" label="Blog" />
+          <NavItem href="/mock-tests" label="SQE" />
+          <NavItem href="/lawbooks" label="Law Books" />
+          <NavItem href="/blog" label="Blog" />
         </nav>
-
-        {/* Login Button */}
-        <Link
-          href="/login"
-          className="bg-[#0f3d3e] text-white px-6 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-90 transition-colors"
-        >
-          LOGIN
-          <ChevronRight size={16} />
-        </Link>
       </div>
     </header>
   )
