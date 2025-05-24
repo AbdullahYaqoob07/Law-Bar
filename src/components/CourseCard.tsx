@@ -5,8 +5,8 @@ type CourseCardProps = {
   id: number | string
   title: string
   description: string
-  lawtype1: string 
-  lawtype2: string 
+  lawtype1?: string 
+  lawtype2?: string 
   price: number
   viewUrl?:string
 }
