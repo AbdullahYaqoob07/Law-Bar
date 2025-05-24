@@ -256,6 +256,7 @@ export default function LawCoursePage() {
               {filteredCourses.map((course) => (
                <CourseCard
                key={course.id}
+               id={course.id}
                title={course.title}
                description={course.description}
                lawtype1={course.languages?.[0] || course.lawtype1 || ""}
