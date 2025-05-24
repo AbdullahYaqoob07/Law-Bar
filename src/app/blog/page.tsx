@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Image from "next/image";
@@ -8,7 +9,6 @@ import Header from "@/components/Header";
 import { useState } from "react";
 import FilterSidebar from "@/components/FilterSIdebar";
 import Footer from "@/components/Footer";
-import FilterButton from "@/components/FilterButton";
 
 const blogPosts = [
   {
@@ -97,6 +97,7 @@ const blogPosts = [
 export default function BlogPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedPractice, setSelectedPractice] = useState("");
   const [selectedJurisdiction, setSelectedJurisdiction] = useState("");
 

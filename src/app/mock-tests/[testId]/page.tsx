@@ -150,7 +150,7 @@ export default function TestPage() {
             </div>
 
             <p className="text-gray-700 font-medium mb-6">
-              Which of the following best describes James's potential criminal liability?
+              Which of the following best describes James&apos;s potential criminal liability?
             </p>
 
             <div className="space-y-2">

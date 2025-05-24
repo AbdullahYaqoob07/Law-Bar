@@ -100,21 +100,21 @@ export default function BlogPost() {
                 </p>
 
                 <p className="text-lg">
-                  Google encourages high-quality blogs regardless of whether they're written by humans or created using
-                  artificial intelligence like ChatGPT. Here's what matters: producing original material with expertise
+                  Google encourages high-quality blogs regardless of whether they&apos;re written by humans or created using
+                  artificial intelligence like ChatGPT. Here&apos;s what matters: producing original material with expertise
                   and trustworthiness based on Google E-E-A-T principles.
                 </p>
 
                 <p className="text-lg">
                   This means focusing more on people-first writing rather than primarily employing AI tools to
                   manipulate search rankings. There comes a time when many experienced professionals want to communicate
-                  their insights but get stuck due to limited writing skills – that's where Generative AI can step in.
+                  their insights but get stuck due to limited writing skills – that&apos;s where Generative AI can step in.
                 </p>
 
                 <p className="text-lg">
-                  So, together, we're going explore how this technology could help us deliver valuable content without
+                  So, together, we&apos;re going explore how this technology could help us deliver valuable content without
                   sounding robotic or defaulting into mere regurgitations of existing materials (spoiler alert – common
-                  pitfalls!). Hang tight - it'll be a fun learning journey!
+                  pitfalls!). Hang tight - it&apos;ll be a fun learning journey!
                 </p>
               </div>
             </div>

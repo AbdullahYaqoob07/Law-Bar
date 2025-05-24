@@ -3,9 +3,12 @@ import Image from "next/image";
 
 export default function BooklawCard({
   title = "Book Name here",
+  author = "Author Name",
   publisher = "Publisher Name",
   description = "Master the foundational principles of contract law with our expertly designed course.",
   price = 158,
+  reviewCount= 120,
+  rating = 4.5,
   imageUrl = "/book.png",
   isbn = "9781663384003",
   formats = ["Print Book", "Audio Book"],
