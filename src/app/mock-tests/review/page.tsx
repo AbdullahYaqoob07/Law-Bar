@@ -12,15 +12,21 @@ export default function ReviewPage() {
   const [test, setTest] = useState<Test | null>(null)
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([])
   const [loading, setLoading] = useState(true)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
+    setHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hydrated) return
+
     const testId = searchParams.get("testId")
     if (!testId) {
       router.push("/mock-tests")
       return
     }
 
-    // Get test data
     const testData = getTestById(testId)
     if (!testData) {
       router.push("/mock-tests")
@@ -29,27 +35,35 @@ export default function ReviewPage() {
 
     setTest(testData)
 
-    // Get user answers from session storage
-    const storedResults = sessionStorage.getItem("testResults")
+    // Use localStorage instead of sessionStorage
+    const storedResults = localStorage.getItem("testResults")
     if (storedResults) {
-      const results = JSON.parse(storedResults)
-      if (results.testId === testId) {
-        // In a real app, you would fetch the user's answers from a database
-        // For now, we'll create mock answers
-        const mockAnswers = testData.questions.map((q, index) => ({
-          questionId: q.id,
-          selectedOption: index % 4, // Just for demonstration
-          isCorrect: index % 4 === q.correctAnswer,
-          timeSpent: 0,
-        }))
-        setUserAnswers(mockAnswers)
+      try {
+        const results = JSON.parse(storedResults)
+        console.log("Stored Results:", results)
+
+        if (results.testId === testId) {
+          const mockAnswers: UserAnswer[] = testData.questions.map((q, index) => ({
+            questionId: q.id,
+            selectedOption: results.answers?.[index]?.selectedOption ?? index % 4,
+            isCorrect: (results.answers?.[index]?.selectedOption ?? index % 4) === q.correctAnswer,
+            timeSpent: results.answers?.[index]?.timeSpent ?? 0,
+          }))
+          setUserAnswers(mockAnswers)
+        } else {
+          console.warn("No matching testId in localStorage.")
+        }
+      } catch (error) {
+        console.error("Error parsing localStorage:", error)
       }
+    } else {
+      console.warn("No testResults in localStorage")
     }
 
     setLoading(false)
-  }, [searchParams, router])
+  }, [hydrated, searchParams, router])
 
-  if (loading || !test) {
+  if (!hydrated || loading || !test) {
     return <div className="min-h-screen flex items-center justify-center">Loading review...</div>
   }
 
@@ -71,11 +85,15 @@ export default function ReviewPage() {
               </div>
               <div>
                 <span className="text-gray-600">Correct Answers:</span>{" "}
-                <span className="font-bold text-green-600">{userAnswers.filter((a) => a.isCorrect).length}</span>
+                <span className="font-bold text-green-600">
+                  {userAnswers.filter((a) => a.isCorrect).length}
+                </span>
               </div>
               <div>
                 <span className="text-gray-600">Incorrect Answers:</span>{" "}
-                <span className="font-bold text-red-600">{userAnswers.filter((a) => !a.isCorrect).length}</span>
+                <span className="font-bold text-red-600">
+                  {userAnswers.filter((a) => !a.isCorrect).length}
+                </span>
               </div>
               <div>
                 <span className="text-gray-600">Score:</span>{" "}
@@ -101,25 +119,11 @@ export default function ReviewPage() {
                       }`}
                     >
                       {isCorrect ? (
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       ) : (
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <line x1="18" y1="6" x2="6" y2="18" />
                           <line x1="6" y1="6" x2="18" y2="18" />
                         </svg>
@@ -128,13 +132,9 @@ export default function ReviewPage() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Question {question.id}:</h3>
 
-                      {/* Scenario */}
                       {question.scenario && <p className="text-gray-700 mb-4">{question.scenario}</p>}
-
-                      {/* Question */}
                       <p className="text-gray-800 mb-4">{question.question}</p>
 
-                      {/* Options */}
                       <div className="space-y-2 mb-4">
                         {question.options.map((option, optIndex) => (
                           <div
@@ -143,47 +143,29 @@ export default function ReviewPage() {
                               optIndex === question.correctAnswer
                                 ? "bg-green-50 border border-green-200"
                                 : optIndex === userAnswer?.selectedOption && !isCorrect
-                                  ? "bg-red-50 border border-red-200"
-                                  : "bg-gray-50 border border-gray-200"
+                                ? "bg-red-50 border border-red-200"
+                                : "bg-gray-50 border border-gray-200"
                             }`}
                           >
                             <div className="flex items-center gap-2">
                               {optIndex === question.correctAnswer && (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  className="text-green-600"
-                                >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-600">
                                   <polyline points="20 6 9 17 4 12" />
                                 </svg>
                               )}
                               {optIndex === userAnswer?.selectedOption && !isCorrect && (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  className="text-red-600"
-                                >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-600">
                                   <line x1="18" y1="6" x2="6" y2="18" />
                                   <line x1="6" y1="6" x2="18" y2="18" />
                                 </svg>
                               )}
-                              <span
-                                className={`${
-                                  optIndex === question.correctAnswer
-                                    ? "text-green-800"
-                                    : optIndex === userAnswer?.selectedOption && !isCorrect
-                                      ? "text-red-800"
-                                      : "text-gray-700"
-                                }`}
-                              >
+                              <span className={`${
+                                optIndex === question.correctAnswer
+                                  ? "text-green-800"
+                                  : optIndex === userAnswer?.selectedOption && !isCorrect
+                                  ? "text-red-800"
+                                  : "text-gray-700"
+                              }`}>
                                 {option}
                               </span>
                             </div>
@@ -191,7 +173,6 @@ export default function ReviewPage() {
                         ))}
                       </div>
 
-                      {/* Explanation */}
                       {question.explanation && (
                         <div className="bg-blue-50 border border-blue-200 p-4 rounded-md">
                           <h4 className="font-bold text-blue-800 mb-1">Explanation:</h4>
@@ -206,7 +187,6 @@ export default function ReviewPage() {
           </div>
         </div>
 
-        {/* Back Button */}
         <div className="flex justify-center">
           <Link
             href="/mock-tests"
