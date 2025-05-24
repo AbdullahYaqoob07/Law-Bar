@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type CourseCardProps = {
-  id: string
+  id: number
   title: string
   description: string
   lawtype1: string
