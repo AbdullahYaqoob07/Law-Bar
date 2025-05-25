@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 // Team members data (4 per slide)
 const teamMembers = [
@@ -137,7 +137,7 @@ export default function AboutUs() {
   }
 
   // Go to specific slide
-  const goToSlide = (slideIndex) => {
+  const goToSlide = (slideIndex: SetStateAction<number>) => {
     setCurrentSlide(slideIndex)
   }
     
