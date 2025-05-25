@@ -208,7 +208,10 @@ export default function CourseDetails() {
         </div>
       </section>
       </main>
+      
       <Footer />
+     
+      
     </div>
   )
 }

@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="min-h-screen">
       <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen flex flex-col`}>
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow w-full max-w-[100vw] overflow-x-hidden">{children}</main>
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-
+import Link from "next/link";
 export default function BooklawCard({
   title = "Book Name here",
   author = "Author Name",
@@ -62,12 +62,11 @@ export default function BooklawCard({
         {/* Price and Button */}
         <div className="flex items-center justify-between mt-auto">
           <span className="text-2xl font-bold text-[#0f3d3e]">${price}</span>
-          <button
-            onClick={onBuyNow}
-            className="bg-[#0f3d3e] text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-[#0f3d3e]/90 transition-colors"
-          >
-            Buy now
-          </button>
+          <Link href={`/lawbooks/${isbn}/purchase`}>
+            <button className="bg-[#0f3d3e] text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-[#0f3d3e]/90 transition-colors">
+              Buy now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
