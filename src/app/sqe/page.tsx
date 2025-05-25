@@ -120,9 +120,13 @@ export default function LawAcademyLanding() {
   }
 
   // Function to go to a specific slide
-  const goToSlide = (slideIndex) => {
-    setCurrentSlide(slideIndex)
+  const goToSlide = (slideIndex: number) => {
+  if (typeof slideIndex !== 'number' || slideIndex < 0) {
+    console.error('Invalid slide index')
+    return
   }
+  setCurrentSlide(slideIndex)
+}
 
   // Auto-advance slides
   useEffect(() => {
