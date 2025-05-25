@@ -137,9 +137,13 @@ export default function AboutUs() {
   }
 
   // Go to specific slide
-  const goToSlide = (slideIndex: number) => {
-    setCurrentSlide(slideIndex)
+ const goToSlide = (slideIndex: number) => {
+  if (typeof slideIndex !== 'number' || slideIndex < 0) {
+    console.error('Invalid slide index')
+    return
   }
+  setCurrentSlide(slideIndex)
+}
     
   return (
     <div className="min-h-screen">
