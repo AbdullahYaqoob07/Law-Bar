@@ -137,7 +137,7 @@ export default function AboutUs() {
   }
 
   // Go to specific slide
-  const goToSlide = (slideIndex: SetStateAction<number>) => {
+  const goToSlide = (slideIndex: any) => {
     setCurrentSlide(slideIndex)
   }
     
