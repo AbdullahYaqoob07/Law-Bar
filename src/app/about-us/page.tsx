@@ -127,7 +127,7 @@ const teamMembers = [
 
 
 export default function AboutUs() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState<number>(0)
   const goToNextSlide = () => {
     setCurrentSlide((prev) => (prev === teamMembers.length - 1 ? 0 : prev + 1))
   }
