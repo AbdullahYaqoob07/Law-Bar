@@ -25,7 +25,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex-shrink-0">
-          <Link href="/" className="flex items-center space-x-2">>
+          <Link href="/" className="flex items-center space-x-2">
             <div className="flex items-center space-x-2 text-[#0f3d3e]">
               <Image 
                 src="/logo.png"
